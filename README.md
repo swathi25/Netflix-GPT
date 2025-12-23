@@ -6,8 +6,11 @@
 ...
 #Features 
 
+-Sign Up page
+  -
 -Login page
-  -Sign in/sign up
+  -Sign in
+  -Header
 -Browse(only login)
   - Header
   - Main movie

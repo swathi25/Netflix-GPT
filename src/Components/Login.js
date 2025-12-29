@@ -10,6 +10,7 @@ import { auth } from "../utils/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BACKG_IMG, PHOTO_URL } from "../utils/constants";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
@@ -36,11 +37,10 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
-          console.log(user);
+          //console.log(user);
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKQFdt6NDnWEsKgiV4ugAQbEfj7VU5r_W3UA&s",
+            photoURL: PHOTO_URL,
           })
             .then(() => {
               // Profile updated!
@@ -53,7 +53,7 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse");
+              //navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -78,8 +78,8 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
+          //console.log(user);
+          //navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -93,8 +93,8 @@ const Login = () => {
   return (
     <div>
       <Header />
-      <div className="absolute">
-        <img src="https://assets.nflxext.com/ffe/siteui/vlv3/8e4a7625-f942-48f5-a9b0-d470b772bc8c/web/IN-en-20251215-TRIFECTA-perspective_a8575e53-99ab-4f16-a2d6-c037acaf12a6_small.jpg" />
+      <div className="fixed inset-0 -z-10">
+        <img src={BACKG_IMG} />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}

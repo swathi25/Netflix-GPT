@@ -16,8 +16,10 @@
 - onAuthStateChange Api of firebase in body component to update userStore.
 - dispatch action -> dispatch function for useDispatch hook.
 - updateProfile API call
-  ...
-  #Features
+- Browse Page
+
+...
+#Features
 
 -Sign Up page
 

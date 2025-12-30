@@ -2,7 +2,7 @@ import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
   if (!movies || !movies.length) return null;
-  console.log("Title is :" + title);
+  //console.log("Title is :" + title);
 
   return (
     <div>

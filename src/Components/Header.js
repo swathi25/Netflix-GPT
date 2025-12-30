@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useEffect } from "react";
-import { LOGO } from "../utils/constants";
+import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
 import { toggleGptsearchView } from "../utils/gptSlice";
+import lang from "../utils/languageConstants";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -61,6 +63,11 @@ const Header = () => {
     dispatch(toggleGptsearchView());
   };
 
+  const handleLanguageChange = (e) => {
+    //console.log(e.target.value);
+    dispatch(changeLanguage(e.target.value));
+  };
+
   return (
     <div
       className={`${baseClasses} ${gptSearchView ? gptHeader : browseHeader}`}
@@ -68,11 +75,24 @@ const Header = () => {
       <img className="w-40" src={LOGO} alt="logo" />
       {user && (
         <div className="flex p-2">
+          {gptSearchView && (
+            <select
+              className="p-2 m-3 bg-gray-900 text-white rounded-lg"
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+
           <button
             className="py-2 px-4 mx-4 my-3 bg-purple-900 text-white rounded-lg"
             onClick={handleGptSearch}
           >
-            GPT Search
+            {gptSearchView ? " to Home" : "GPT Search"}
           </button>
           <img className="w-8 h-8 mt-3" alt="user-icon" src={user?.photoURL} />
           <button className="font-bold text-white ml-2" onClick={handleSignOut}>
